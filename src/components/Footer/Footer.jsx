@@ -2,7 +2,7 @@ import FAB from "./FAB";
 
 const Footer = () => {
     return (
-        <div className="w-[100%] h-40px">
+        <div className="w-full h-40">
         <FAB/>
         </div>
       );

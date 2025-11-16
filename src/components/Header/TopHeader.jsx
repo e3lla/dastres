@@ -6,7 +6,7 @@ const TopHeader = () => {
     <div className="hidden lg:flex w-full h-[90px] items-center">
       <div className="relative flex gap-8 items-center w-full max-w-[1200px] mx-auto px-4">
         <a href="/">
-          <img alt="فروشگاه اینترنتی دسترسی" className="w-24 h-[40px]" src={Image1} />
+          <img alt="فروشگاه اینترنتی دسترسی" className="w-24 h-10" src={Image1} />
         </a>
 
         <div className="relative" id="main-search">
@@ -34,7 +34,7 @@ const TopHeader = () => {
             <a className="px-3 py-2 text-sm text-gray-light hover-icon" href="/about">درباره ما</a>
 
     <div className="indicator flex xl:mr-[180px]  ">
-        <div tabIndex={0} role="button" className="btn btn-mine relative ml-[10px]">
+        <div tabIndex={0} role="button" className="btn btn-mine relative ml-2.5">
                 <svg width="24px" height="24px" viewBox="-2.4 -2.4 28.80 28.80" xmlns="http://www.w3.org/2000/svg" fill="#FE5F55">
                   <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
                   <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round" stroke="#FE5F55" strokeWidth="4.8">

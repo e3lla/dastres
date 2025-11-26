@@ -4,14 +4,12 @@ import Imagesvg from "../../Images/7.svg"
 const FAB = () => {
   const [open, setOpen] = useState(false);
 
-  // sizes for offset calculation (approx px values)
   const BUTTON_SIZE = 56; // btn-lg approx
   const GAP = 12;
 
   return (
     <div className="fixed bottom-6 right-6 z-50">
       <div className="relative w-14 h-14">
-        {/* Action card: positioned absolutely above the FAB */}
         <div
           role="dialog"
           aria-hidden={!open}
@@ -41,7 +39,6 @@ www.dastresi.com
           </div>
         </div>
 
-        {/* Main FAB button */}
        <button
   type="button"
   aria-label="open-fab"

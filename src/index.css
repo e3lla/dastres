@@ -5,7 +5,7 @@
 
 html, body {
   font-family: 'Shabnam', system-ui, sans-serif;
-  direction: rtl; /* برای فارسی */
+  direction: rtl; 
 }
 
 * {
@@ -54,10 +54,28 @@ html, body {
   -o-border-radius:15px ;
 }
 
-/* Menu hover styling - red text with underline */
+/* Menu */
 .menu > li > button:hover,
 .menu > li > a:hover {
   color: #FE5F55;
   border-bottom: 2px solid #FE5F55;
   background-color: transparent !important;
+}
+/*mainnav svg*/
+.btn-min2 {
+  background-color: whitesmoke;
+  color: white;
+  border: none;
+  padding: 5px 5px;
+  border-radius: 13px;
+  cursor: pointer;
+  box-shadow: black;
+  -webkit-border-radius: 13px;
+  -moz-border-radius: 13px;
+  -ms-border-radius: 13px;
+  -o-border-radius: 13px;
+}
+.btn-min2:hover {
+  background-color: #9f9f9f;
+  color: white;
 }

@@ -1,65 +1,122 @@
-import React from "react";
-import Image1 from "../../Images/logo.png";
+import React, { useState } from "react";
+import Image1 from "../../Images/logo.png"; // لوگوی دسترسی
 
 const MainNav = () => {
+  const [drawerOpen, setDrawerOpen] = useState(false);
+
   return (
-    <div className="navbar 2xl:hidden xl:hidden z-50  lg:hidden md:flex bg-base-100 shadow-sm lg:mt-7 md:mt-0 sm:mt-0 mt-0 fixed top-0 left-0 right-0">
-      <div className="navbar-start ">
-        <div className="dropdown">
-          <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" />
-            </svg>
+    <div
+      className="navbar z-50 fixed top-0 left-0 right-0 bg-base-100 shadow-sm md:flex lg:hidden"
+      dir="rtl"
+    >
+      <div className="navbar-start flex items-center gap-2">
+        {/* دکمه همبرگر */}
+        <button
+          className="btn btn-ghost lg:hidden"
+          onClick={() => setDrawerOpen(true)}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-5 w-5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M4 6h16M4 12h8m-8 6h16"
+            />
+          </svg>
+        </button>
+
+        {/* لوگو نوار بالا */}
+        <img src={Image1} alt="Logo" className="md:w-[95px] sm:-[70px] h-[30px]" />
+      </div>
+
+      {/* Drawer */}
+      {drawerOpen && (
+        <div className="fixed inset-0 z-50 flex">
+          {/* overlay */}
+          <div
+            className="fixed inset-0 bg-black/40"
+            onClick={() => setDrawerOpen(false)}
+          ></div>
+
+          {/* content */}
+          <div className="relative bg-white w-64 p-4 min-h-full shadow-lg flex flex-col">
+            <button
+              className="absolute top-2 right-2 btn btn-ghost"
+              onClick={() => setDrawerOpen(false)}
+            >
+              ✕
+            </button>
+
+            {/* لوگوی دسترسی */}
+            <div className="flex items-center justify-center mb-4 mt-6">
+              <img src={Image1} alt="Logo" className="w-[140px] h-[60px]" />
+            </div>
+
+            {/* منوی بالای منو اصلی */}
+         <ul className="flex flex-wrap items-center  justify-between  border-b border-t pt-4  pb-4 mb-4 mt-4 text-sm font-medium text-right gap-2">
+  <li>
+    <a className=" hover:text-indigo-600">خانه</a>
+  </li>
+  <li>
+    <a className=" hover:text-indigo-600">دسته‌بندی‌ها</a>
+  </li>
+  <li>
+    <a className=" hover:text-indigo-600">جستجو</a>
+  </li>
+  <li>
+    <a className=" hover:text-indigo-600">سبد خرید</a>
+  </li>
+</ul>
+
+
+            {/* منوی دسته‌بندی‌ها از تصویر */}
+           <div className="flex-1 text-right overflow-y-auto max-h-[300px] pr-1">
+  <ul className="menu space-y-2">
+    <li><a>لوازم جانبی موبایل و کامپیوتر</a></li>
+    <li><a>کابل - مبدل - رابط</a></li>
+    <li><a>لوازم تولید محتوا</a></li>
+    <li><a>لوازم شبکه</a></li>
+    <li><a>کنسول بازی و لوازم جانبی</a></li>
+    <li><a>لوازم شخصی و پوشیدنی</a></li>
+    <li><a>لوازم شخصی و پوشیدنی</a></li>
+    <li><a>لوازم شخصی و پوشیدنی</a></li>
+    <li><a>لوازم شخصی و پوشیدنی</a></li>
+  </ul>
+</div>
+
+
+            {/* دکمه پایین */}
+            <div className="mt-10">
+              <button className="btn btn-primary rounded-xl w-full">
+                ورود / ثبت‌نام
+              </button>
+            </div>
           </div>
-          <ul tabIndex="-1" className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
-            <li><a>Item 1</a></li>
-            <li>
-              <a>Parent</a>
-              <ul className="p-2">
-                <li><a>Submenu 1</a></li>
-                <li><a>Submenu 2</a></li>
-              </ul>
-            </li>
-            <li><a>Item 3</a></li>
-          </ul>
         </div>
-        <img src={Image1} alt="" className="btn btn-ghost w-[95px] h-[30px]" />
-      </div>
+      )}
+      
+      <div className="flex justify-end w-[600px] ">
 
-      <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">
-          <li><a>Item 1</a></li>
-          <li>
-            <details>
-              <summary>Parent</summary>
-              <ul className="p-2">
-                <li><a>Submenu 1</a></li>
-                <li><a>Submenu 2</a></li>
-              </ul>
-            </details>
-          </li>
-          <li><a>Item 3</a></li>
-        </ul>
-      </div>
+    <div className=" flex xl:mr-44">
+        <div tabIndex={0} role="button" className="btn btn-min2  ml-0.5">
+     <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M14.9536 14.9458L21 21M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+              </div>
+            </div>
+ <div className=" flex xl:mr-44">
+        <div tabIndex={0} role="button" className="btn btn-min2  ml-0.5">
+                     <svg fill="#ffffff" width="20px" height="20px" viewBox="0 0 32.00 32.00" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff">
 
-      <div className="navbar-end gap-3">
-        <a className=" ">
-            <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="SVGRepo_bgCarrier" stroke-width="0"/>
 
-<g id="SVGRepo_bgCarrier" strokewidth="0"/>
-
-<g id="SVGRepo_tracerCarrier" strokelinecap="round" strokelinejoin="round"/>
-
-<g id="SVGRepo_iconCarrier"> <path d="M11.5 21C16.7467 21 21 16.7467 21 11.5C21 6.25329 16.7467 2 11.5 2C6.25329 2 2 6.25329 2 11.5C2 16.7467 6.25329 21 11.5 21Z" stroke="#292D32" strokewidth="1.5" strokelinecap="round" strokelinejoin="round"/> <path d="M22 22L20 20" stroke="#292D32" strokewidth="1.5" strokelinecap="round" strokelinejoin="round"/> </g>
-
-</svg></a>
-       
-        <a className="">
-            <svg fill="#ffffff" width="20px" height="20px" viewBox="0 0 32.00 32.00" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff" strokewidth="0.00032">
-
-<g id="SVGRepo_bgCarrier" strokewidth="0"/>
-
-<g id="SVGRepo_tracerCarrier" strokelinecap="round" strokelinejoin="round" stroke="#6b6b6b" strokewidth="1.7280000000000002">
+<g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke="#000000" stroke-width="4.288">
 
 <path d="M16 15.503A5.041 5.041 0 1 0 16 5.42a5.041 5.041 0 0 0 0 10.083zm0 2.215c-6.703 0-11 3.699-11 5.5v3.363h22v-3.363c0-2.178-4.068-5.5-11-5.5z"/>
 
@@ -70,16 +127,26 @@ const MainNav = () => {
 <path d="M16 15.503A5.041 5.041 0 1 0 16 5.42a5.041 5.041 0 0 0 0 10.083zm0 2.215c-6.703 0-11 3.699-11 5.5v3.363h22v-3.363c0-2.178-4.068-5.5-11-5.5z"/>
 
 </g>
-</svg>
-</a>
 
-        <a className="">
-            <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path fill-rule="evenodd" clip-rule="evenodd" d="M2 1C1.44772 1 1 1.44772 1 2C1 2.55228 1.44772 3 2 3H3.21922L6.78345 17.2569C5.73276 17.7236 5 18.7762 5 20C5 21.6569 6.34315 23 8 23C9.65685 23 11 21.6569 11 20C11 19.6494 10.9398 19.3128 10.8293 19H15.1707C15.0602 19.3128 15 19.6494 15 20C15 21.6569 16.3431 23 18 23C19.6569 23 21 21.6569 21 20C21 18.3431 19.6569 17 18 17H8.78078L8.28078 15H18C20.0642 15 21.3019 13.6959 21.9887 12.2559C22.6599 10.8487 22.8935 9.16692 22.975 7.94368C23.0884 6.24014 21.6803 5 20.1211 5H5.78078L5.15951 2.51493C4.93692 1.62459 4.13696 1 3.21922 1H2ZM18 13H7.78078L6.28078 7H20.1211C20.6742 7 21.0063 7.40675 20.9794 7.81078C20.9034 8.9522 20.6906 10.3318 20.1836 11.3949C19.6922 12.4251 19.0201 13 18 13ZM18 20.9938C17.4511 20.9938 17.0062 20.5489 17.0062 20C17.0062 19.4511 17.4511 19.0062 18 19.0062C18.5489 19.0062 18.9938 19.4511 18.9938 20C18.9938 20.5489 18.5489 20.9938 18 20.9938ZM7.00617 20C7.00617 20.5489 7.45112 20.9938 8 20.9938C8.54888 20.9938 8.99383 20.5489 8.99383 20C8.99383 19.4511 8.54888 19.0062 8 19.0062C7.45112 19.0062 7.00617 19.4511 7.00617 20Z" fill="gray"/>
 </svg>
-</a>
-
-      </div>
+              </div>
+            </div>
+            {/*بمون*/}
+             <div className="indicator flex xl:mr-44">
+        <div tabIndex={0} role="button" className="btn btn-mine relative ml-2.5">
+                <svg width="24px" height="24px" viewBox="-2.4 -2.4 28.80 28.80" xmlns="http://www.w3.org/2000/svg" fill="#FE5F55">
+                  <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
+                  <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round" stroke="#FE5F55" strokeWidth="4.8">
+                    <polyline fill="#FE5F55" stroke="#FE5F55" strokeMiterlimit="10" strokeWidth="1.56" points="7.21 15.82 22.48 12.96 22.48 4.36 4.15 4.36"/>
+                    <path fill="none" stroke="#FE5F55" strokeMiterlimit="10" strokeWidth="1.56" d="M.52,1.5H3.39L7.2,15.82,5.54,18.31a1.48,1.48,0,0,0-.24.82h0a1.46,1.46,0,0,0,1.46,1.46h11.9"/>
+                    <circle fill="none" stroke="#FE5F55" strokeMiterlimit="10" strokeWidth="1.56" cx="18.66" cy="21.55" r="0.95"/>
+                    <circle fill="none" stroke="#FE5F55" strokeMiterlimit="10" strokeWidth="1.56" cx="9.11" cy="21.55" r="0.95"/>
+                  </g>
+                </svg>
+                <span className="badge badge-sm w-2.5 indicator-item badge-orange rounded-[15px]">0</span>
+              </div>
+            </div>
+       </div>
     </div>
   );
 };

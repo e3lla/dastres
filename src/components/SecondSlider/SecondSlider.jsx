@@ -1,8 +1,6 @@
 import React, { useRef, useState } from 'react';
-// Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-// Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/pagination';
 
@@ -10,12 +8,13 @@ import './SecondSlider.css';
 import Image3 from "../../Images/adaptor.png"
 import Image4 from "../../Images/gaming.png"
 
-// import required modules
 import { Pagination } from 'swiper/modules';
 
 export default function SecondSlider() {
   return (
     <>
+          <h2 className="text-center flex justify-center text-2xl font-bold mt-7">دسته‌بندی‌های منتخب</h2>
+
       <Swiper
       
         slidesPerView={3}

@@ -1,4 +1,3 @@
-// DividerProductsSlice.js
 import { createSlice } from "@reduxjs/toolkit";
 import ankerImg from "../../Images/ANKER-V22.jpg";
 

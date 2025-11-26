@@ -5,7 +5,7 @@ const Divider = () => {
   const cards = useSelector(selectDividerProducts); 
 
   return (
-    <div className="mt-8 w-full lg:w-[35%] h-auto bg-emerald-400 flex flex-col justify-start items-center gap-4 px-4 sm:px-6 md:px-8 lg:px-0">
+    <div className="mt-8 w-full lg:w-[35%] h-auto bg-[#E2E2E2] flex flex-col justify-start items-center gap-4 px-4 sm:px-6 md:px-8 lg:px-0">
       {cards.map((card) => (
   <div
   key={card.id}

@@ -1,13 +1,10 @@
-/* styles.css (تماماً جایگزین شود) */
 
-/* اجازه بده والد ارتفاع را کنترل کند */
 .swiper,
 .swiper-wrapper,
 .swiper-slide {
   height: 100% !important;
 }
 
-/* کانتینر کلی */
 .swiper {
   width: 100%;
   max-width: 1228px;
@@ -32,13 +29,11 @@
   display: block;
 }
 
-/* اگر می‌خواهی فلش‌ها مخفی بمونن */
 .swiper-button-next,
 .swiper-button-prev {
   display: none;
 }
 
-/* فقط radius را برای موبایل کمتر کن */
 @media (max-width: 640px) {
   .swiper { border-radius: 10px; }
 }

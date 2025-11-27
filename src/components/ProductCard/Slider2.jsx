@@ -1,4 +1,5 @@
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
@@ -6,13 +7,43 @@ import "swiper/css/navigation";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
 
 import ProductCard from "../ProductCard/ProductCard";
-import { selectSliderProducts } from "../ProductCard/ProductCardSlice";
+import { 
+  selectSliderProducts, 
+  selectSliderProductsStatus, 
+  selectSliderProductsError, 
+  fetchSliderProducts 
+} from "../ProductCard/ProductCardSlice";
+
+import "./Sliders.css";
 
 const Slider2 = () => {
+  const dispatch = useDispatch();
   const products = useSelector(selectSliderProducts);
+  const status = useSelector(selectSliderProductsStatus);
+  const error = useSelector(selectSliderProductsError);
+
+  useEffect(() => {
+    dispatch(fetchSliderProducts());
+  }, [dispatch]);
+
+  if (status === 'loading') {
+    return (
+      <div className="w-full mx-auto mt-10 bg-[#E2E2E2] rounded-2xl px-2 md:px-12 py-8">
+        <div className="text-center">در حال بارگذاری محصولات...</div>
+      </div>
+    );
+  }
+
+  if (status === 'failed') {
+    return (
+      <div className="w-full mx-auto mt-10 bg-[#E2E2E2] rounded-2xl px-2 md:px-12 py-8">
+        <div className="text-center text-red-500">خطا: {error}</div>
+      </div>
+    );
+  }
 
   return (
-    <div className="w-full mx-auto mt-10  bg-[#E2E2E2] rounded-2xl px-2 md:px-12">
+    <div className="w-full mx-auto mt-10 bg-[#E2E2E2] rounded-2xl px-2 md:px-12">
       {/* متن بالای اسلایدر */}
       <div className="flex w-full justify-between items-center px-2 md:px-12 py-6">
         <span className="text-2xl font-bold text-gray-700">
@@ -50,8 +81,8 @@ const Slider2 = () => {
       </div>
 
       <Swiper
-        spaceBetween={50} // فاصله بین کارت‌ها
-        slidesPerView={4} // دسکتاپ
+        spaceBetween={-5}
+        slidesPerView={1}
         autoplay={{
           delay: 3000,
           disableOnInteraction: false,
@@ -60,16 +91,18 @@ const Slider2 = () => {
         navigation={true}
         modules={[Autoplay, Pagination, Navigation]}
         breakpoints={{
-          0: { slidesPerView: 1 },      // خیلی کوچک: یک کارت کامل + کمی از کارت بعدی
-          640: { slidesPerView: 2 },    // موبایل بزرگ‌تر
-          768: { slidesPerView: 2 },      // تبلت کوچک
-          1024: { slidesPerView: 3 },
-          1524: { slidesPerView: 4 },     // دسکتاپ
+          530: { slidesPerView: 1 },
+          640: { slidesPerView: 2 },
+          840: { slidesPerView: 2 },
+          1068: { slidesPerView: 3 },
+          1424: { slidesPerView: 3 },
+          1524: { slidesPerView: 4 },
         }}
+        className="special-swiper-unique"
       >
         {products.map((product) => (
           <SwiperSlide key={product.id} className="flex justify-center">
-            <div className="2xl:w-[272px] xl:w-[272px] lg:w-[272px] h-[419px] ">
+            <div className="2xl:w-[272px] xl:w-[272px] lg:w-[282px] h-[419px]">
               <ProductCard product={product} />
             </div>
           </SwiperSlide>

@@ -1,144 +1,52 @@
-import { createSlice } from "@reduxjs/toolkit";
-import Image6 from "../../Images/SE3338-11.jpg";
-import Image7 from "../../Images/battrey-xiaomi-11.jpg";
+// کل محتوای ProductCardSlice.js رو با این جایگزین کن:
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { fetchSliderProductsAPI } from "../../Api/ProductCardApi";
 
-const initialState = {
-  products: [
-    {
-  id: 1,
-  name: "محصول ۱",
-  link: "/product/1",
-  colors: ["#000", "#444"],
-  image: Image6,
-  priceBeforeDiscount: 15000,
-  price: 10000,
-  discountPercent: 33,
-  available: true,
-},
-{
-  id: 2,
-  name: "محصول ۲",
-  link: "/product/2",
-  colors: ["#000", "#444"],
-  image: Image7,
-  priceBeforeDiscount: 15000,
-  price: 10000,
-  discountPercent: 33,
-  available: true,
-},
-{
-  id: 3,
-  name: "محصول ۳",
-  link: "/product/3",
-  colors: ["#000", "#444"],
-  image: Image6,
-  priceBeforeDiscount: 15000,
-  price: 10000,
-  discountPercent: 33,
-  available: true,
-},
-{
-  id: 4,
-  name: "محصول ۴",
-  link: "/product/4",
-  colors: ["#000", "#444"],
-  image: Image7,
-  priceBeforeDiscount: 15000,
-  price: 10000,
-  discountPercent: 33,
-  available: true,
-},
-{
-  id: 5,
-  name: "محصول ۵",
-  link: "/product/5",
-  colors: ["#000", "#444"],
-  image: Image6,
-  priceBeforeDiscount: 15000,
-  price: 10000,
-  discountPercent: 33,
-  available: true,
-},
-{
-  id: 6,
-  name: "محصول ۶",
-  link: "/product/6",
-  colors: ["#000", "#444"],
-  image: Image7,
-  priceBeforeDiscount: 15000,
-  price: 10000,
-  discountPercent: 33,
-  available: true,
-},
-{
-  id: 7,
-  name: "محصول ۷",
-  link: "/product/7",
-  colors: ["#000", "#444"],
-  image: Image6,
-  priceBeforeDiscount: 15000,
-  price: 10000,
-  discountPercent: 33,
-  available: true,
-},
-{
-  id: 8,
-  name: "محصول ۸",
-  link: "/product/8",
-  colors: ["#000", "#444"],
-  image: Image7,
-  priceBeforeDiscount: 15000,
-  price: 10000,
-  discountPercent: 33,
-  available: true,
-},
-{
-  id: 9,
-  name: "محصول ۹",
-  link: "/product/9",
-  colors: ["#000", "#444"],
-  image: Image6,
-  priceBeforeDiscount: 15000,
-  price: 10000,
-  discountPercent: 33,
-  available: true,
-},
-{
-  id: 10,
-  name: "محصول ۱۰",
-  link: "/product/10",
-  colors: ["#000", "#444"],
-  image: Image7,
-  priceBeforeDiscount: 15000,
-  price: 10000,
-  discountPercent: 33,
-  available: true,
-},
-{
-  id: 11,
-  name: "محصول ۱۱",
-  link: "/product/11",
-  colors: ["#000", "#444"],
-  image: Image6,
-  priceBeforeDiscount: 15000,
-  price: 10000,
-  discountPercent: 33,
-  available: true,
-},
+// export اصلی که خطا میده
+export const fetchSliderProducts = createAsyncThunk(
+  'sliderProducts/fetchSliderProducts',
+  async (_, { rejectWithValue }) => {
+    try {
+      const data = await fetchSliderProductsAPI();
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
 
-  ],
-};
-
-const productCardSlice = createSlice({
-  name: "productCard",
-  initialState,
-  reducers: {
-    addProduct: (state, action) => state.products.push(action.payload),
-    removeProduct: (state, action) =>
-      (state.products = state.products.filter((p) => p.id !== action.payload)),
+const ProductCardSlice = createSlice({
+  name: "sliderProducts",
+  initialState: {
+    items: [],
+    status: 'idle',
+    error: null
   },
+  reducers: {
+    removeProduct: (state, action) => {
+      state.items = state.items.filter((p) => p.id !== action.payload);
+    },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchSliderProducts.pending, (state) => {
+        state.status = 'loading';
+        state.error = null;
+      })
+      .addCase(fetchSliderProducts.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.items = action.payload;
+      })
+      .addCase(fetchSliderProducts.rejected, (state, action) => {
+        state.status = 'failed';
+        state.error = action.payload;
+      });
+  }
 });
 
-export const selectSliderProducts = (state) => state.productCard.products;
+export const { removeProduct } = ProductCardSlice.actions;
+export const selectSliderProducts = (state) => state.sliderProducts.items;
+export const selectSliderProductsStatus = (state) => state.sliderProducts.status;
+export const selectSliderProductsError = (state) => state.sliderProducts.error;
 
-export default productCardSlice.reducer;
+export default ProductCardSlice.reducer;

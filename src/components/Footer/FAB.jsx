@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Imagesvg from "../../Images/7.svg"
+import Imagesvg from "../../../public/Images/7.svg"
 
 const FAB = () => {
   const [open, setOpen] = useState(false);

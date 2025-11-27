@@ -1,11 +1,19 @@
-import { useRef } from "react";
-import loco from "../../Images/Untitled-159.jpg";
-
-const brandLogos = Array(24).fill(loco);
+// src/components/Favorite/Favorite.jsx
+import { useRef, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { selectBrands, selectBrandsStatus, selectBrandsError, fetchBrands } from "./FavoriteSlice";
 
 const Favorite = () => {
+  const dispatch = useDispatch();
+  const brands = useSelector(selectBrands);
+  const status = useSelector(selectBrandsStatus);
+  const error = useSelector(selectBrandsError);
   const containerRef = useRef(null);
   const itemWidth = 146; 
+
+  useEffect(() => {
+    dispatch(fetchBrands());
+  }, [dispatch]);
 
   const scrollPrev = () => {
     const container = containerRef.current;
@@ -19,8 +27,26 @@ const Favorite = () => {
     container.scrollBy({ left: itemWidth, behavior: "smooth" });
   };
 
+  if (status === 'loading') {
+    return (
+      <div className="w-full py-8 bg-gray-50 relative rounded-2xl">
+        <h2 className="text-center text-2xl font-bold mb-4 mr-12">محبوب‌ترین برندها</h2>
+        <div className="text-center py-8">در حال بارگذاری برندها...</div>
+      </div>
+    );
+  }
+
+  if (status === 'failed') {
+    return (
+      <div className="w-full  py-8 bg-gray-50 relative rounded-2xl">
+        <h2 className="text-center text-2xl font-bold mb-4 mr-12">محبوب‌ترین برندها</h2>
+        <div className="text-center py-8 text-red-500">خطا: {error}</div>
+      </div>
+    );
+  }
+
   return (
-    <div className="w-full py-8 bg-gray-50 relative rounded-2xl">
+    <div className="w-full pt-20 py-8 bg-gray-50 relative rounded-2xl">
       <h2 className="text-center text-2xl font-bold mb-4 mr-12">محبوب‌ترین برندها</h2>
 
       <div className="relative overflow-hidden px-4 ">
@@ -41,14 +67,14 @@ const Favorite = () => {
           ref={containerRef}
           className="flex gap-11 overflow-x-auto scrollbar-hide py-8 pr-10"
         >
-          {brandLogos.map((logo, idx) => (
+          {brands.map((brand) => (
             <div
-              key={idx}
-              className="flex-shrink-0 w-[191px] h-[112px]  bg-white shadow rounded flex items-center justify-center"
+              key={brand.id}
+              className="flex-shrink-0 w-[191px] h-[112px] bg-white shadow rounded flex items-center justify-center"
             >
               <img
-                src={logo}
-                alt={`brand-${idx}`}
+                src={brand.logo}
+                alt={brand.name}
                 className="max-h-[60px] object-contain"
               />
             </div>

@@ -1,5 +1,5 @@
 import React from "react";
-import Image1 from "../../Images/logo.png";
+import Image1 from "../../../public/Images/logo.png";
 
 const TopHeader = () => {
   return (

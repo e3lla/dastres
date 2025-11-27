@@ -1,8 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
-import Icon1 from  "../../Images/icon1.png"
-import Icon2 from  "../../Images/icon2.png"
-import Icon3 from  "../../Images/icon3.png"
-import Icon4 from  "../../Images/icon4.png"
+import Icon1 from  "../../../public/Images/icon1.png"
+import Icon2 from  "../../../public/Images/icon2.png"
+import Icon3 from  "../../../public/Images/icon3.png"
+import Icon4 from  "../../../public/Images/icon4.png"
 
 
 const initialState = {

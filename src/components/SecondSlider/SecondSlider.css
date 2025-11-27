@@ -15,3 +15,7 @@
   height:110%;
   object-fit: contain;
 }
+.special-swiper .swiper-pagination {
+  position: relative;
+  margin-top: 20px; 
+}

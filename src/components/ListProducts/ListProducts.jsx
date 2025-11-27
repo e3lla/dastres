@@ -5,7 +5,7 @@ const ListProducts = () => {
   const items = useSelector(selectListProducts);
 
   return (
-    <div className="mt-8 w-full flex flex-col items-center gap-4 px-4 sm:px-6 md:px-8">
+    <div className="md:mt-14 w-full flex flex-col items-center bg-[#E2E2E2] gap-4 px-4 sm:px-6 md:px-8">
       {Array.isArray(items) && items.map((item) => (
         <div
           key={item.id}

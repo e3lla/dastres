@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import ankerImg from "../../Images/ANKER-V22.jpg";
+import ankerImg from "../../../public/Images/ANKER-V22.jpg";
 
 const initialState = [
   {

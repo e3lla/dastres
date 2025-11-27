@@ -1,45 +1,46 @@
+// src/components/LastArticle/LastArticle.jsx
 import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { selectArticles, selectArticlesStatus, selectArticlesError, fetchArticles } from './LastArticleSlice';
 
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/autoplay';
 
 import './LastArticle.css';
-import Image8 from "../../Images/what-is-mfi-apple-dastresi-Artboard 1 copy 3.jpg"
-import Image9 from "../../Images/wireless-charging-vs-charger-dastresiArtboard 1.jpg"
-
-
 import { Pagination, Autoplay } from 'swiper/modules';
 
 export default function LastArticle() {
-  const card = (
-    <div className="item flex flex-col w-[296px] justify-between rounded-xl shadow-md bg-white mb-2 hover-title" href="/article/mfi-apple">
+  const dispatch = useDispatch();
+  const articles = useSelector(selectArticles);
+  const status = useSelector(selectArticlesStatus);
+  const error = useSelector(selectArticlesError);
+
+  useEffect(() => {
+    dispatch(fetchArticles());
+  }, [dispatch]);
+
+  if (status === 'loading') {
+    return <div className="text-center py-8">در حال بارگذاری مقالات...</div>;
+  }
+
+  if (status === 'failed') {
+    return <div className="text-center py-8 text-red-500">خطا: {error}</div>;
+  }
+
+  const ArticleCard = ({ article }) => (
+    <div className="item flex flex-col w-[296px] justify-between rounded-xl shadow-md bg-white mb-2 hover-title">
       <div className="flex flex-col">
         <img
           className="mx-auto w-auto rounded-xl mb-2"
-          alt="چیست؟"
-          src={Image8}
+          alt={article.title}
+          src={article.image}
         />
         <div className="flex flex-col justify-around flex-1 en_num text-center">
           <h3 className="leading-7 text-xs md:text-sm overflow-hidden en_num h-14 px-4 flex items-center justify-center">
-            <span>کابل MFi چیست؟ : ناجی باتری آیفون شما یا یک حقه تبلیغات...</span>
-          </h3>
-        </div>
-      </div>
-    </div>
-  );
-  const card1 = (
-    <div className="item flex flex-col w-[296px] justify-between rounded-xl shadow-md bg-white mb-2 hover-title" href="/article/mfi-apple">
-      <div className="flex flex-col">
-        <img
-          className="mx-auto w-auto rounded-xl mb-2"
-          alt="چیست؟"
-          src={Image9}
-        />
-        <div className="flex flex-col justify-around flex-1 en_num text-center">
-          <h3 className="leading-7 text-xs md:text-sm overflow-hidden en_num h-14 px-4 flex items-center justify-center">
-            <span>کابل MFi چیست؟ : ناجی باتری آیفون شما یا یک حقه تبلیغات...</span>
+            <span>{article.title}</span>
           </h3>
         </div>
       </div>
@@ -59,21 +60,20 @@ export default function LastArticle() {
         }}
         pagination={{ clickable: true }}
         breakpoints={{
-          540: { slidesPerView: 2, },
-          768: { slidesPerView: 3,  },
-          1024: { slidesPerView: 3 },
+          340: { slidesPerView: 1 },
+          740: { slidesPerView: 2 },
+          840: { slidesPerView: 3 },
+          968: { slidesPerView: 3 },
+          1024: { slidesPerView: 4 },
         }}
         modules={[Pagination, Autoplay]}
         className="mySwiper last-swiper"
       >
-        {/* 7 slides */}
-        <SwiperSlide>{card}</SwiperSlide>
-        <SwiperSlide>{card1}</SwiperSlide>
-        <SwiperSlide>{card}</SwiperSlide>
-        <SwiperSlide>{card1}</SwiperSlide>
-        <SwiperSlide>{card}</SwiperSlide>
-        <SwiperSlide>{card1}</SwiperSlide>
-        <SwiperSlide>{card}</SwiperSlide>
+        {articles.map((article) => (
+          <SwiperSlide key={article.id}>
+            <ArticleCard article={article} />
+          </SwiperSlide>
+        ))}
       </Swiper>
     </>
   );

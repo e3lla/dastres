@@ -4,9 +4,9 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 
-import Image2 from "../../Images/banner-dastresi-1 (1).png"
-import Image3 from "../../Images/banner-dastresi-2-min.png"
-import Image4 from "../../Images/banner-dastresi-4-min.png"
+import Image2 from "../../../public/Images/banner-dastresi-1 (1).png"
+import Image3 from "../../../public/Images/banner-dastresi-2-min.png"
+import Image4 from "../../../public/Images/banner-dastresi-4-min.png"
 
 import './styles.css';
 

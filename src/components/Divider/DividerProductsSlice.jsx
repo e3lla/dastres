@@ -1,42 +1,60 @@
-import { createSlice } from "@reduxjs/toolkit";
-import ankerImg from "../../Images/ANKER-V22.jpg";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-const initialState = [
-  {
-    id: 1,
-    title: "هندزفری بلوتوثی انکر R50i مدل Anker A3949",
-    img: ankerImg,
-    priceBefore: 1390000,
-    discount: 300000,
-    priceNow: 1090000,
-  },
-  {
-    id: 2,
-    title: "هندزفری بلوتوثی انکر R50i مدل Anker A3949",
-    img: ankerImg,
-    priceBefore: 1390000,
-    discount: 300000,
-    priceNow: 1090000,
-  },
-  {
-    id: 3,
-    title: "هندزفری بلوتوثی انکر R50i مدل Anker A3949",
-    img: ankerImg,
-    priceBefore: 1390000,
-    discount: 300000,
-    priceNow: 1090000,
-  },
-];
+export const fetchDividerProducts = createAsyncThunk(
+  'dividerProducts/fetchDividerProducts',
+  async (_, { rejectWithValue }) => {
+    try {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 5000);
+      
+      const response = await fetch('http://localhost:3001/dividerProducts', {
+        signal: controller.signal
+      });
+      
+      clearTimeout(timeoutId);
+      
+      if (!response.ok) {
+        throw new Error(`خطای HTTP: ${response.status}`);
+      }
+      
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      if (error.name === 'AbortError') {
+        return rejectWithValue('اتصال timeout خورد. سرور پاسخ نمی‌دهد');
+      }
+      return rejectWithValue(`سرور در دسترس نیست: ${error.message}`);
+    }
+  }
+);
 
-const dividerProductsSlice = createSlice({
+const DividerProductsSlice = createSlice({
   name: "dividerProducts",
-  initialState,
-  reducers: {
-    addDividerProduct: (state, action) => {
-      state.push(action.payload);
-    },
+  initialState: {
+    items: [],
+    status: 'idle',
+    error: null
   },
+  reducers: {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchDividerProducts.pending, (state) => {
+        state.status = 'loading';
+        state.error = null;
+      })
+      .addCase(fetchDividerProducts.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.items = action.payload;
+      })
+      .addCase(fetchDividerProducts.rejected, (state, action) => {
+        state.status = 'failed';
+        state.error = action.payload;
+      });
+  }
 });
 
-export const selectDividerProducts = (state) => state.dividerProducts;
-export default dividerProductsSlice.reducer;
+export const selectDividerProducts = (state) => state.dividerProducts.items;
+export const selectDividerProductsStatus = (state) => state.dividerProducts.status;
+export const selectDividerProductsError = (state) => state.dividerProducts.error;
+
+export default DividerProductsSlice.reducer;

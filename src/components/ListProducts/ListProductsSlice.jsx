@@ -1,58 +1,50 @@
-import { createSlice } from "@reduxjs/toolkit";
-import ankerImg from "../../../public/Images/ANKER-V22.jpg";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { fetchListProductsAPI } from "../../Api/ListProductsApi";
 
-const initialState = [
-  {
-    id: 1,
-    title: "هندزفری بلوتوثی انکر R50i مدل Anker A3949",
-    img: ankerImg,
-    priceBefore: 1390000,
-    discount: 300000,
-    priceNow: 1090000,
-  },
-  {
-    id: 2,
-    title: "هندزفری بلوتوثی انکر R50i مدل Anker A3949",
-    img: ankerImg,
-    priceBefore: 1390000,
-    discount: 300000,
-    priceNow: 1090000,
-  },
-  {
-    id: 3,
-    title: "هندزفری بلوتوثی انکر R50i مدل Anker A3949",
-    img: ankerImg,
-    priceBefore: 1390000,
-    discount: 300000,
-    priceNow: 1090000,
-  },
-   {
-    id: 4,
-    title: "هندزفری بلوتوثی انکر R50i مدل Anker A3949",
-    img: ankerImg,
-    priceBefore: 1390000,
-    discount: 300000,
-    priceNow: 1090000,
-  },
-   {
-    id: 5,
-    title: "هندزفری بلوتوثی انکر R50i مدل Anker A3949",
-    img: ankerImg,
-    priceBefore: 1390000,
-    discount: 300000,
-    priceNow: 1090000,
-  },
-];
+export const fetchListProducts = createAsyncThunk(
+  'ListProducts/fetchListProducts',
+  async (_, { rejectWithValue }) => {
+    try {
+      const data = await fetchListProductsAPI();
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
 
 const ListProductsSlice = createSlice({
-  name: "listProducts",
-  initialState,
+  name: "ListProducts",
+  initialState: {
+    items: [],
+    status: 'idle',
+    error: null
+  },
   reducers: {
     addListProduct: (state, action) => {
-      state.push(action.payload);
+      state.items.push(action.payload);
     },
   },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchListProducts.pending, (state) => {
+        state.status = 'loading';
+        state.error = null;
+      })
+      .addCase(fetchListProducts.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.items = action.payload;
+      })
+      .addCase(fetchListProducts.rejected, (state, action) => {
+        state.status = 'failed';
+        state.error = action.payload;
+      });
+  }
 });
 
-export const selectListProducts = (state) => state.listProducts;
+export const { addListProduct } = ListProductsSlice.actions;
+export const selectListProducts = (state) => state.ListProducts.items;
+export const selectListProductsStatus = (state) => state.ListProducts.status;
+export const selectListProductsError = (state) => state.ListProducts.error;
+
 export default ListProductsSlice.reducer;

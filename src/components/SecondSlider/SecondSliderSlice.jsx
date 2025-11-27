@@ -1,8 +1,6 @@
-// src/components/SecondSlider/SecondSliderSlice.js
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { fetchCategoriesAPI } from "../../Api/SecondSliderApi";
 
-// دریافت دسته‌بندی‌ها
 export const fetchCategories = createAsyncThunk(
   'SecondSlider/fetchCategories',
   async (_, { rejectWithValue }) => {

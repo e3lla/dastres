@@ -1,8 +1,6 @@
-// src/components/Favorite/FavoriteSlice.js
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { fetchBrandsAPI } from "../../Api/FavoriteApi";
 
-// دریافت برندها
 export const fetchBrands = createAsyncThunk(
   'Favorite/fetchBrands',
   async (_, { rejectWithValue }) => {

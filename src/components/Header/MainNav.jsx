@@ -10,7 +10,7 @@ const MainNav = () => {
       dir="rtl"
     >
       <div className="navbar-start flex items-center gap-2">
-        {/* دکمه همبرگر */}
+        {/* دکمه */}
         <button
           className="btn btn-ghost lg:hidden"
           onClick={() => setDrawerOpen(true)}

@@ -1,4 +1,3 @@
-// src/components/LastArticle/LastArticle.jsx
 import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { useSelector, useDispatch } from 'react-redux';

@@ -11,7 +11,7 @@ export const fetchCategoriesAPI = async () => {
     const data = await response.json();
     return data;
   } catch (error) {
-    throw new Error(`خطا در ارتباط با سرور: ${error.message}`);
+    throw new Error(`خطا در سرور: ${error.message}`);
   }
 };
 

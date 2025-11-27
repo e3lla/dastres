@@ -9,6 +9,7 @@ import whyReducer from "../components/Why/WhySlice ";
 import articlesReducer from '../components/LastArticle/LastArticleSlice';
 import SecondSliderReducer from '../components/SecondSlider/SecondSliderSlice';
 import FavoriteReducer from '../components/Favorite/FavoriteSlice';
+import ListProductsReducer from '../components/ListProducts/ListProductsSlice';
 
 
 export const store = configureStore({
@@ -21,7 +22,9 @@ export const store = configureStore({
     sliderProducts: sliderProductsReducer,
     why: whyReducer, 
     SecondSlider: SecondSliderReducer,
-        Favorite: FavoriteReducer
+    Favorite: FavoriteReducer,
+    ListProducts: ListProductsReducer
+
 
 
    },

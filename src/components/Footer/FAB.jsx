@@ -4,7 +4,7 @@ import Imagesvg from "../../../public/Images/7.svg"
 const FAB = () => {
   const [open, setOpen] = useState(false);
 
-  const BUTTON_SIZE = 56; // btn-lg approx
+  const BUTTON_SIZE = 56; 
   const GAP = 12;
 
   return (

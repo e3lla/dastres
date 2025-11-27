@@ -1,8 +1,7 @@
-// کل محتوای ProductCardSlice.js رو با این جایگزین کن:
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { fetchSliderProductsAPI } from "../../Api/ProductCardApi";
 
-// export اصلی که خطا میده
+//    خطا 
 export const fetchSliderProducts = createAsyncThunk(
   'sliderProducts/fetchSliderProducts',
   async (_, { rejectWithValue }) => {

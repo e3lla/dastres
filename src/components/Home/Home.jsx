@@ -36,7 +36,7 @@ const Home = () => {
           <Divider/> 
          </div>
 
-         {/* نسخه sm: تخفیف‌ها داخل قسمت سبز */}
+         {/* نسخه sm: تخفیف‌ها قسمت سبز */}
          <div className="w-full justify-center sm:h-[1010px]   mt-8 bg-[#E2E2E2] rounded-2xl sm:flex md:hidden lg:hidden xl:hidden 2xl:hidden flex-col">
             <div className="card w-full bg-[#E2E2E2] rounded-t-2xl rounded-b-none h-[50px] place-items-end  mt-[-10px]">
               <div className="flex justify-between w-full px-[5%]">

@@ -1,4 +1,3 @@
-// src/components/LastArticle/ArticlesSlice.js
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 export const fetchArticles = createAsyncThunk(

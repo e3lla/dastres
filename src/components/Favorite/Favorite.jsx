@@ -1,4 +1,3 @@
-// src/components/Favorite/Favorite.jsx
 import { useRef, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { selectBrands, selectBrandsStatus, selectBrandsError, fetchBrands } from "./FavoriteSlice";

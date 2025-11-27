@@ -11,7 +11,7 @@ const ProductCard = ({ product }) => {
         href={product.link}
         className="item flex flex-col justify-between rounded-xl shadow-md bg-white hover:shadow-lg transition-all duration-200 h-full relative"
       >
-        {/* رنگ‌های محصول */}
+        {/* رنگ‌ گوگولی */}
         <div className="hidden md:flex flex-col absolute bg-white left-0 p-1 m-0 md:m-2">
           {product.colors?.map((color, idx) => (
             <span
@@ -23,7 +23,6 @@ const ProductCard = ({ product }) => {
         </div>
 
         <div className="flex gap-2 flex-col">
-          {/* تصویر */}
           <img
             alt={product.name}
             className="mx-auto rounded-t-xl w-full h-[220px] object-contain"

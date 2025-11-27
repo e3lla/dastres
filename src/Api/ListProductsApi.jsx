@@ -1,8 +1,8 @@
 const API_URL = 'http://localhost:3001';
 
-export const fetchBrandsAPI = async () => {
+export const fetchListProductsAPI = async () => {
   try {
-    const response = await fetch(`${API_URL}/brands`);
+    const response = await fetch(`${API_URL}/listProducts`);
     
     if (!response.ok) {
       throw new Error(`خطای سرور: ${response.status}`);
@@ -15,13 +15,13 @@ export const fetchBrandsAPI = async () => {
   }
 };
 
-export const addBrandAPI = async (brand) => {
-  const response = await fetch(`${API_URL}/brands`, {
+export const addListProductAPI = async (product) => {
+  const response = await fetch(`${API_URL}/listProducts`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(brand),
+    body: JSON.stringify(product),
   });
   return await response.json();
 };

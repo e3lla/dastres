@@ -1,12 +1,36 @@
-import { useSelector } from "react-redux";
-import { selectListProducts } from "../ListProducts/ListProductsSlice";
+import { useSelector, useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { selectListProducts, selectListProductsStatus, selectListProductsError, fetchListProducts } from "./ListProductsSlice";
 
 const ListProducts = () => {
+  const dispatch = useDispatch();
   const items = useSelector(selectListProducts);
+  const status = useSelector(selectListProductsStatus);
+  const error = useSelector(selectListProductsError);
+
+  useEffect(() => {
+    dispatch(fetchListProducts());
+  }, [dispatch]);
+
+  if (status === 'loading') {
+    return (
+      <div className="md:mt-14 w-full flex items-center justify-center bg-[#E2E2E2] py-8">
+        <div className="text-lg">در حال بارگذاری محصولات...</div>
+      </div>
+    );
+  }
+
+  if (status === 'failed') {
+    return (
+      <div className="md:mt-14 w-full flex items-center justify-center bg-[#E2E2E2] py-8">
+        <div className="text-red-500 text-lg">خطا: {error}</div>
+      </div>
+    );
+  }
 
   return (
     <div className="md:mt-14 w-full flex flex-col items-center bg-[#E2E2E2] gap-4 px-4 sm:px-6 md:px-8">
-      {Array.isArray(items) && items.map((item) => (
+      {items.map((item) => (
         <div
           key={item.id}
           className="rounded-xl shadow flex flex-col sm:flex-row items-center bg-white gap-2 overflow-hidden w-full max-w-2xl sm:h-44 h-auto"

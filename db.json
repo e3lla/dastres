@@ -339,8 +339,48 @@
       "name": "JBL",
       "logo": "./public/Images/Untitled-159.jpg"
     }
+  ],  "listProducts": [
+    {
+      "id": 1,
+      "title": "هندزفری بلوتوثی انکر R50i مدل Anker A3949",
+      "img": "./public/Images/bl.jpg",
+      "priceBefore": 1390000,
+      "discount": 300000,
+      "priceNow": 1090000
+    },
+    {
+      "id": 2,
+      "title": "هندزفری بلوتوثی سامسونگ Buds2 مدل Samsung Galaxy",
+      "img": "./public/Images/bl.jpg",
+      "priceBefore": 2500000,
+      "discount": 500000,
+      "priceNow": 2000000
+    },
+    {
+      "id": 3,
+      "title": "پاوربانک شیائومی مدل Redmi 10000mAh",
+      "img": "./public/Images/bl.jpg",
+      "priceBefore": 800000,
+      "discount": 150000,
+      "priceNow": 650000
+    },
+    {
+      "id": 4,
+      "title": "کابل شارژر آیفون مدل MFi Certified",
+      "img": "./public/Images/bl.jpg",
+      "priceBefore": 600000,
+      "discount": 200000,
+      "priceNow": 400000
+    },
+    {
+      "id": 5,
+      "title": "شارژر بی‌سیم سامسونگ مدل EP-P1300",
+      "img": "./public/Images/bl.jpg",
+      "priceBefore": 1200000,
+      "discount": 300000,
+      "priceNow": 900000
+    }
+
   ]
-
-
 
 }

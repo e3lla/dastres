@@ -13,7 +13,7 @@ const ContactBar = () => {
             </span>
           </div>
 
-          {/* ساعات کاری */}
+          {/* ساعات  */}
           <div className="flex items-center mb-4 lg:mb-0 leading-7">
             <span className="flex gap-2 items-center text-gray">
 <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

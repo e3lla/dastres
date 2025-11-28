@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Image1 from "../../../public/Images/logo.png"; // لوگوی دسترسی
+import Image1 from "../../../public/Images/logo.png";
 
 const MainNav = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
